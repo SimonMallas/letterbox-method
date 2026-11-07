@@ -20,7 +20,7 @@ these threads since this cursor?* is an exact question QEM answers.
 ## What goes in a note
 
 - Decisions and their reasons ("we chose X because Y — letter abc123").
-- Preferences and constraints ("Simon wants low-key notes — letter def456").
+- Preferences and constraints ("the operator wants low-key notes — letter def456").
 - Lessons with a **when-this-matters** trigger line ("before a push: …").
 
 ## What does NOT go in a note
