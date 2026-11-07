@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 1560px;
+    background: #0e1420;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #e8e2d5; padding: 54px 60px;
+  }
+  .kicker { font-size: 15px; letter-spacing: 4px; text-transform: uppercase; color: #7d8aa0; margin-bottom: 12px; }
+  h1 { font-size: 46px; font-weight: 800; line-height: 1.1; color: #f4efe4; margin-bottom: 10px; }
+  h1 .accent { color: #e8b34b; }
+  .subtitle { font-size: 20px; color: #9aa7bb; line-height: 1.45; margin-bottom: 36px; }
+  .subtitle b { color: #cfd8e3; }
+
+  .stage-title {
+    display: flex; align-items: center; gap: 16px; margin: 30px 0 16px;
+  }
+  .stage-title .num {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 800; color: #0e1420;
+  }
+  .stage-title h2 { font-size: 27px; color: #f4efe4; }
+  .stage-title .when { font-size: 15px; color: #7d8aa0; margin-left: auto; font-style: italic; }
+  .s1 .num { background: #4fc3a1; } .s2 .num { background: #e8b34b; } .s3 .num { background: #9b8bf4; }
+
+  .cards { display: flex; gap: 18px; }
+  .card {
+    flex: 1; border-radius: 16px; padding: 22px 24px;
+    background: #141b28; border: 1.5px solid #2c3849;
+  }
+  .card h3 { font-size: 20px; margin-bottom: 4px; }
+  .card .plain { font-size: 14px; color: #7d8aa0; font-style: italic; margin-bottom: 10px; }
+  .card p { font-size: 16px; line-height: 1.5; color: #c3cbd8; }
+  .card p b { color: #eef2f8; }
+  .card .stamp {
+    display: inline-block; margin-top: 12px; font-size: 12.5px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 14px;
+  }
+  .ok .stamp { background: rgba(79,195,161,0.18); color: #6fd4b6; border: 1px solid #4fc3a1; }
+  .oq .stamp { background: rgba(232,179,75,0.16); color: #f0c569; border: 1px solid #e8b34b; }
+  .pk .stamp { background: rgba(155,139,244,0.16); color: #b3a7f7; border: 1px solid #9b8bf4; }
+
+  .rules {
+    margin-top: 38px; border-radius: 16px; padding: 24px 30px;
+    background: linear-gradient(135deg, rgba(232,179,75,0.12), rgba(79,195,161,0.08));
+    border: 1.5px solid #e8b34b;
+  }
+  .rules h2 { font-size: 21px; color: #f0c569; margin-bottom: 12px; }
+  .rules ul { list-style: none; }
+  .rules li { font-size: 17.5px; color: #dde3ec; line-height: 1.6; padding-left: 26px; position: relative; }
+  .rules li::before { content: "✓"; position: absolute; left: 0; color: #6fd4b6; font-weight: 800; }
+  .rules li b { color: #f4efe4; }
+
+  .foot { margin-top: 28px; font-size: 14px; color: #6b7789; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+  <div class="kicker">Agent Letterbox — the build, in plain terms</div>
+  <h1>A memory that <span class="accent">stays honest</span>:<br>the plan</h1>
+  <div class="subtitle">Every agent keeps a <b>notebook</b> (quick answers, always cites its source)<br>
+  over a <b>filing cabinet</b> of letters (the real record, never rewritten).<br>
+  Anyone can check the notebook against the cabinet — <b>the cabinet always wins.</b></div>
+
+  <div class="stage-title s1"><div class="num">1</div><h2>What already works</h2><span class="when">in your hands today</span></div>
+  <div class="cards">
+    <div class="card ok"><h3>The filing cabinet</h3><div class="plain">letters</div><p>Every message between agents — and from you, from your phone — is a letter: <b>addressed, dated, kept forever</b>. Corrections are new letters that name what they replace. Nothing is ever edited or deleted.</p><span class="stamp">shipped</span></div>
+    <div class="card ok"><h3>The exact-answer machine</h3><div class="plain">QEM</div><p>Ask the envelopes, not a model: <b>what's owed to me? which version stands? did that ever happen?</b> Counted, exact, and it says where it looked — an empty answer is never dressed up as "no".</p><span class="stamp">shipped</span></div>
+    <div class="card ok"><h3>The notebook habit</h3><div class="plain">the map</div><p>Agents keep quick-reference notes that <b>cite the letter behind every fact</b> and carry a bookmark of how fresh they are. Fast to read; safe to throw away and rebuild.</p><span class="stamp">working habit</span></div>
+  </div>
+
+  <div class="stage-title s2"><div class="num">2</div><h2>What we're proving</h2><span class="when">the research — three honest questions</span></div>
+  <div class="cards">
+    <div class="card oq"><h3>Does the notebook stay true?</h3><div class="plain">Q1 · honesty over months</div><p>We measure how far notebooks drift from the cabinet, and how fast they get corrected. <b>Nobody publishes this measurement</b> — we'll be the first with a number, good or bad.</p><span class="stamp">open question</span></div>
+    <div class="card oq"><h3>Can fuzzy memory be trusted?</h3><div class="plain">Q2 · the optional helper</div><p>If we add a "sounds like…" helper, it must <b>show the letter it means — or say nothing</b>. Never a plausible sentence with no source. Parked until the rule can be enforced, not just requested.</p><span class="stamp">open question</span></div>
+    <div class="card oq"><h3>What if there are two offices?</h3><div class="plain">Q3 · records across machines</div><p>Two machines, two cabinets — kept in step because letters only ever get <b>added</b>, never edited. The hard parts (undoing a letter, proving delivery) get researched before anything is built.</p><span class="stamp">open question</span></div>
+  </div>
+
+  <div class="stage-title s3"><div class="num">3</div><h2>What we'll hand over</h2><span class="when">the package — days, not months</span></div>
+  <div class="cards">
+    <div class="card pk"><h3>The Method</h3><div class="plain">one short document</div><p>"How we run our setup": the notebook, the cabinet, the exact-answer machine, the rules. With the shape card. <b>Anyone can copy the way of working</b> in an afternoon.</p><span class="stamp">first</span></div>
+    <div class="card pk"><h3>The Starter Kit</h3><div class="plain">template + installers</div><p>The folder layout, the notebook conventions, and the installers that already exist — a working setup from a clone, on the tools agents already use.</p><span class="stamp">second</span></div>
+    <div class="card pk"><h3>The Test Suite</h3><div class="plain">"check any setup"</div><p>Twelve hard questions to ask any memory system — including ours. <b>Publish the failures too.</b> A system that always refuses to answer should fail on usefulness, visibly.</p><span class="stamp">third</span></div>
+  </div>
+
+  <div class="rules">
+    <h2>The ground rules — printed on the box</h2>
+    <ul>
+      <li><b>The record is never rewritten.</b> A correction is a new entry that names what it replaces.</li>
+      <li><b>Everything above the record is disposable.</b> Any notebook or index can be deleted and rebuilt — nothing is lost.</li>
+      <li><b>Nothing is claimed that wasn't searched.</b> Every "nobody does this" comes with the list of where we looked.</li>
+      <li><b>The person is a seat, not a supervisor.</b> You write letters like anyone else — from your phone, your menu bar, or Slack.</li>
+    </ul>
+  </div>
+
+  <div class="foot"><span>Agent Letterbox — independently reviewed</span><span>October 2026</span></div>
+</body>
+</html>
