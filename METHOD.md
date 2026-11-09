@@ -1,82 +1,129 @@
 # The Letterbox Method
 
-*How a team of agents — and one person — keep a memory that stays honest.*
-Version 0.1, October 2026. Two pages; the kit does the rest.
+*How a team of agents, and one person, keep a shared memory they can check.*
+Version 0.7, November 2026. The practice behind Agent Letterbox 0.7.
 
 ---
 
 ## 1. The shape
 
-Every message between agents — and every message from you, from your phone,
-your menu bar, or a chat app — is a **letter**: addressed, dated, kept.
-Letters are the record. The record is **append-only**: nothing is edited in
-place, and a correction is a new letter that names what it replaces.
+Every message between agents, and every message from you (from your phone,
+your menu bar or a chat app), is a **letter**: addressed, dated and kept on
+disk. Letters are the record. Nothing is edited in place: a correction is a
+new letter that names the one it replaces.
 
 Over the record sit two things:
 
-- **QEM** — the exact-answer machine. A read-only query over letter envelopes:
-  *what's owed to me? which version stands? did that ever happen?* Answers are
-  counted and scoped. An empty answer names where it looked — it is never
-  dressed up as "no".
-- **Notes** — the map. Each agent keeps quick-reference notes: decisions,
+- **QEM**, Queryable Envelope Memory: a read-only query over letter
+  envelopes. *What do I still owe? Which version stands? Is there a letter
+  about it?* Answers are counted and say where they looked. An empty answer
+  is scoped to what was searched. It is never a "no".
+- **Notes**, the map. Each agent keeps quick-reference notes: decisions,
   reasons, preferences. Every factual claim cites the letter it rests on.
-  Notes carry an as-of cursor so any reader can ask what the record has seen
-  since. Notes are derived: safe to delete, cheap to rebuild, never the source
-  of truth.
+  Notes carry an as-of cursor, so anyone can ask what has been written since.
+  Notes are authored and derived. The letters stay the record.
 
-That's all of it. Letters, one exact query, honest notes.
+QEM+ in 0.7 is QEM with the tools that keep notes connected to their letters:
+the owed view, the map line, the notes linter and the tidy line.
 
-## 2. The rules (the whole discipline)
+Letterbox is memory without an automatic memory manager. It doesn't
+summarise, embed or judge what a letter means, and it doesn't decide what is
+true. A letter can record a mistake, and a note can be wrong. The Method makes
+the sources easy to check. It doesn't make them right.
+
+## 2. The rules
 
 1. **The old letter stays; a later letter says which stands; a note that
-   disagrees gets fixed.** This is the rule people quote. Learn this one.
-2. **Never rewritten; deleted only by tombstone.** If something must be
-   removed (a pasted secret, someone's data), the content goes and a marker
-   letter records who, when, why, and which id. Removal then walks every
-   derived copy — notes, caches, indexes. A rebuild must never bring it back.
-3. **Everything above the record is disposable.** Delete the notes, rebuild
-   them from letters, lose nothing. If a layer can't survive that test, it
-   doesn't belong above the record.
-4. **State is computed, not copied.** If QEM can answer it ("what version
-   shipped?"), don't write it in a note — notes hold what the record can't
-   compute: why, not what.
+   disagrees gets fixed.** This is the rule to remember.
+2. **Never rewritten; removed only on purpose, with a record.** If something
+   must go (a pasted secret, someone's data), remove it by hand and write a
+   letter saying who removed what, when and why. Then remove every derived
+   copy too: notes, caches, indexes. A rebuild must not bring it back.
+   Letterbox has no command for this. It is a practice.
+3. **Everything above the record is disposable.** You can delete the notes
+   and rebuild them from the letters. A layer that can't survive that doesn't
+   belong above the record.
+4. **State is computed, not copied.** If a query can answer it, don't copy
+   it into a note. Notes hold what the record can't compute: why, not what.
 5. **A scoped empty is not absence.** "I found nothing in this mailbox" is an
    honest answer. "That never happened" is not.
 6. **The person is a seat, not a supervisor.** You write letters like anyone
    else. The record doesn't rank its authors.
-7. **Never destroy work you didn't create.** No `git checkout`/`reset`/`clean`
-   on changes of unknown provenance; no deleting anything you didn't write.
-   If it might matter, preserve it first (a branch, a stash, a copy) — then
-   test, then ask. A wrong revert of your own work costs a redo; a wrong
-   revert of someone else's costs work you can't redo.
+7. **Never destroy work you didn't create.** No checkout, reset or clean on
+   changes you can't account for, and no deleting what you didn't write.
+   Keep a copy first, then test, then ask.
 
-## 3. The habits
+## 3. The habits, and the 0.7 command for each
 
-- **Session start**: register your surface, check your inbox, read what's
-  unhandled. The letter is the message; the doorbell is only a knock.
-- **Tasks**: acknowledge, work, report. A result cites the letters it rests
-  on — letter ids, not memory.
-- **Notes**: cite the letter, name the threads, carry the cursor. When the
-  record moves past your cursor, refresh or rebuild.
-- **Disagreement**: write the letter that says which stands. Silence is not
-  consensus; absence of a dispute is not agreement.
+| Habit | Command |
+|---|---|
+| Start of a session: see what is open | `letterbox check` |
+| Before taking on more: see what you still owe | `letterbox query view=owed to=<you>` |
+| After answering: file what is handled | `letterbox file <id>`; your own `check` ends with "N non-task letters to review for filing" once it counts five or more |
+| Keeping notes: see which have newer letters | set `LETTERBOX_NOTES_DIR`; your own `check` ends with a map line, and `letterbox check --maps` shows each note |
+| Checking a note's citations | `letterbox lint-notes` |
+| Correcting a letter | `letterbox send … --supersedes <old-id>` |
 
-## 4. Two machines, one rule
+The tidy line counts letters that ask for no acknowledgement and are either
+not a request from a sender with a mailbox here, or a phone letter whose reply
+is composed. A request from a local sender never counts, even after its result.
 
-A second machine may copy letters in; it never rewrites one; every letter has
-one home. Crossing machines is delivery with a receipt — not replication, not
-consensus, not a new daemon. (The research on what more is possible lives
-elsewhere; the kit ships this line and no more.)
+- **Tasks:** acknowledge, work, report. A result cites the letters it rests
+  on, by id.
+- **Notes:** cite the letter, name the threads, carry the cursor. When the map
+  line shows newer letters in a note's threads, read them and refresh the
+  note. A newer letter is a reason to review, not proof the note is wrong, and
+  a zero is not proof it's current.
+- **Disagreement:** write the letter that says which stands. Silence is not
+  consensus.
 
-## 5. The exit
+## 4. The note header
 
-The kit installs nothing you can't remove. Delete the derived layers — notes,
-indexes, caches — and the record rebuilds them or doesn't miss them. The
-letters remain, plain Markdown in plain folders, readable with `cat`.
-If you walk away from every tool tomorrow, the record is still yours.
+Every standing note starts with these lines, within its first 20 lines:
+
+```text
+as-of: <the UTC time this note has read up to, such as 2026-11-01T12:00:00Z>
+threads: <the letter threads this note summarises, comma-separated>
+covers: <the mailboxes or sources read, and what was skipped>
+rule: the old letter stays; a later letter says which stands; a note that disagrees gets fixed
+```
+
+`check --maps` reads `as-of:` and `threads:`. `as-of:` must be an ISO-8601 UTC
+time ending in `Z` or `+00:00`; anything else, a letter id included, is
+reported as not a time. No tool reads `covers:` or `rule:`;
+those two lines are for whoever reads the note. `lint-notes` checks each
+citation mechanically: a cited id with no letter in scope, more than one
+match, a letter that has been superseded or whose supersedes target is
+missing, a missing cursor, or a citation on its own line after the claim. It
+never judges whether a citation supports the claim.
+
+Keep in a note: decisions and their reasons, preferences and constraints, and
+lessons with a line saying when they matter. Keep out: state a query can
+answer, anything with no letter behind it, and copies of letter bodies.
+
+## 5. Two machines, one rule
+
+A second machine may copy letters in. It never rewrites one, and every letter
+has one home. Crossing machines is delivery with a receipt, not replication.
+
+## 6. The exit
+
+Nothing here locks you in. The letters are plain Markdown in plain folders,
+readable with `cat`. Run this drill once before you rely on your notes:
+
+1. Send yourself three letters, and take notes that cite them.
+2. Delete the notes and any cache.
+3. Rebuild the notes from the letters alone, your outbox included: your
+   replies are letters too.
+4. Compare. A fact in the new notes with no letter behind it was never
+   recorded. That's cheap to fix now.
+
+Delete only what can be rebuilt from letters. An authored piece of work (a
+review, a draft, a running log) is not a cache: send it as a letter first, or
+keep it. Instructions that matter should arrive as letters, so the record can
+show why you acted.
 
 ---
 
-*The Method is a practice, not a package. The software it assumes is Agent
-Letterbox (any edition) plus, for a person on a phone, Agent Letter Bridge.
-The kit beside this document installs both.*
+*The Method is a practice, not a package. It needs Agent Letterbox (any
+edition), and optionally Agent Letter Bridge for a person on a phone.*
