@@ -7,6 +7,14 @@ This repo is the practice, not the product. The software is Agent Letterbox
 (any edition) and Agent Letter Bridge; this repo holds the document, the
 starter kit, and the cards that explain the shape.
 
+The products: [Agent Letterbox](https://github.com/SimonMallas/agent-letterbox-cmux)
+(the record — durable letters, in cmux, tmux, Zellij and Herdr editions) and
+[Agent Letter Bridge](https://github.com/SimonMallas/agent-letter-bridge)
+(the relay — a person on a phone becomes letters in the same record). The
+Method is how an agent turns that record into memory without adding a system:
+standing notes that cite their letters, and tools that check the notes against
+the record.
+
 - **[METHOD.md](METHOD.md)** — the Method. Two pages. Read this first.
 - **[kit/](kit/)** — the starter kit: install order, the notes conventions,
   the one-line second-machine rule, the exit path.
