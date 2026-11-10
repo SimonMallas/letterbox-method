@@ -7,8 +7,9 @@ then trust it.
 
 - Notes: delete them. They rebuild from letters, or weren't worth keeping.
 - Indexes, caches, any query state: delete. They recompute.
-- The registration: `letterbox` keeps a live-surface registry; it dies with
-  the pane anyway.
+- The registration: `letterbox` keeps a live-surface registry. The surface
+  dies with the pane; the row stays until `letterbox <mux> unregister <you>`
+  (or re-register on the new surface at next start).
 
 ## What remains
 
@@ -23,11 +24,12 @@ the only thing that mattered.
 4. Compare: any fact in the new notes without a letter behind it was never
    honest — that's the Method catching you, and it's cheap to fix now.
 
-If a tombstone letter exists, run the drill against it too: the redacted
-content must not come back from any copy, snapshot, or cache. If it does,
-the setup fails here — not in production.
+If a letter was ever removed by hand (with its removal letter beside it),
+run the drill against it too: the removed content must not come back from any
+copy, snapshot, or cache. If it does, the setup fails here — not in
+production.
 
-## Two lines the first drill taught (28 Oct)
+## Three lines the first drill taught (28 Oct)
 
 - **The record includes your own outbox.** Rebuild from inbox AND outbox
   letters — your replies are letters too. A rebuild that reads only what you

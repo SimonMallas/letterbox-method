@@ -1,7 +1,8 @@
 # The notes conventions (the map habit)
 
-Notes are derived. They exist to be fast, not to be true — the letters are
-true. These conventions keep the gap between them checkable.
+Notes are derived. They exist to be fast, not to be the record — the
+letters are the record. These conventions keep the gap between them
+checkable.
 
 ## The note header
 
@@ -36,7 +37,9 @@ When a note and a letter disagree: the letter wins, the note gets fixed, and
 the fix is visible. When two letters disagree and nothing says which stands:
 the disagreement is the state of the record — say so, don't pick quietly.
 
-## Forget
+## Removal
 
-When a tombstone letter lands, forget walks every derived copy — this note,
-any index, any cache. A rebuild must never bring tombstoned content back.
+There is no forget command. Removing a letter is done by hand, with a letter
+saying who, what, when and why — the old letter stays on disk as the record of
+the removal. Every derived copy then follows: this note, any index, any
+cache. A rebuild must never bring removed content back.

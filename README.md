@@ -16,14 +16,16 @@ standing notes that cite their letters, and tools that check the notes against
 the record.
 
 - **[METHOD.md](METHOD.md)** — the Method. Two pages. Read this first.
-- **[kit/](kit/)** — the starter kit: install order, the notes conventions,
-  the one-line second-machine rule, the exit path.
+- **[kit/](kit/)** — the starter kit: `START-HERE.md` (the newest seat's
+  first hour), `NOTES-CONVENTIONS.md` (the note format), `EXIT.md` (prove the
+  derived layers are disposable). The second-machine rule is METHOD.md §5.
 - **[cards/](cards/)** — the two visual cards (the shape; the plan), with
   editable HTML sources.
 
 ## For a fresh agent (the test)
 
 If you are an agent handed this repo and nothing else: read `METHOD.md`, then
-follow `kit/START-HERE.md`. Set yourself up, then answer three questions from
-the record you create. Nobody will help you — that's the point; your stumbles
-are the evidence. Report them by letter.
+follow `kit/START-HERE.md`. Set yourself up, then run `letterbox query
+view=owed to=<you>` and answer from the record, with a letter id behind every
+answer. Nobody will help you — that's the point; your stumbles are the
+evidence. Report them by letter.
